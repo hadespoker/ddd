@@ -2,15 +2,20 @@
 :root{--clean:#087ff5}.card.selected{outline:2px solid var(--clean);box-shadow:0 10px 25px #087ff532}.clean-detail{display:none;margin:18px 0 4px;background:#fff;border:1px solid #cce8ff;border-radius:21px;padding:18px;box-shadow:0 7px 19px #143d700d}.clean-detail.visible{display:block}.clean-detail h3{font-size:17px;margin:4px 0 8px}.clean-detail p{font-size:12px;line-height:1.65;color:#71829a;margin:5px 0}.clean-detail b{color:#087ff5}
 
 
-.ui-icon,.weather-icon,.icon,.close-page,.back,.nav{font-family:Arial,sans-serif;font-style:normal;font-variant-emoji:text;color:var(--b);border:0;outline:0;box-shadow:none}
-.ui-icon,.weather-icon{display:inline-flex;align-items:center;justify-content:center;line-height:1;background:none}
+header{justify-content:flex-start}
+.emoji-icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:0 0 24px;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:18px;line-height:1;font-style:normal;border:0;outline:0;background:none;box-shadow:none}
 .choice{display:flex;align-items:center;gap:9px}
-.choice .ui-icon{width:20px;height:20px;flex:0 0 20px;font-size:17px;font-weight:700}
-.choice.on{outline:0}
-.fact>.ui-icon{width:24px;height:24px;font-size:18px;font-weight:700}
-.weather-icon{width:14px;font-size:13px;font-weight:700;vertical-align:-1px}
-.card.selected{outline:0}
-button:focus{outline:0}
-button:focus-visible{outline:0;filter:brightness(.97)}
-.nav{border:0;outline:0}
+.choice .emoji-icon{font-size:18px}
+.choice.on,.card.selected,button:focus,button:focus-visible{outline:0}
+.weather-emoji{width:16px;height:16px;flex-basis:16px;font-size:13px;vertical-align:-2px}
+.fact>.emoji-icon{font-size:18px}
+.detailHero{overflow:hidden;background:#5fc5fa}
+.detailHero>.detailTrack{position:absolute;inset:0;left:0;bottom:0;z-index:0;display:flex;width:100%;height:100%;will-change:transform;transition:transform .85s ease-in-out}
+.detailTrack>.detailSlide{position:relative;left:auto;bottom:auto;z-index:0;min-width:100%;height:100%;background:center/cover no-repeat}
+.detailHero:after{z-index:1;pointer-events:none}
+.detailHero>.detailCopy{position:absolute;z-index:2;left:22px;bottom:38px}
+.detailHero>.detailDots{position:absolute;z-index:3;left:50%;bottom:14px;display:flex;gap:6px;transform:translateX(-50%)}
+.detailDot{display:block;width:6px;height:6px;border-radius:50%;background:#ffffff78;transition:width .25s ease,background .25s ease}
+.detailDot.on{width:18px;border-radius:6px;background:#fff}
+.photoSource{position:absolute;right:10px;top:10px;z-index:2;color:#fff;background:#10294399;border-radius:10px;padding:5px 8px;font-size:8px;text-decoration:none;backdrop-filter:blur(6px)}
 
