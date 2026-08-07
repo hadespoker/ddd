@@ -184,9 +184,156 @@ const beaches = [
     types: ["자연산 회", "해산물", "칼국수"],
   },
 ];
+// OpenStreetMap 지오코딩 결과와 각 관광지의 공식 주소를 대조한 위치입니다.
+const mapAttractions = [
+  {
+    name: "더베이101",
+    lat: 35.1565941,
+    lon: 129.1520866,
+    description: "마린시티 야경과 요트 풍경을 즐기기 좋은 명소",
+    beach: "해운대해수욕장",
+  },
+  {
+    name: "동백섬",
+    lat: 35.1540639,
+    lon: 129.1520862,
+    description: "해안 산책로와 누리마루 APEC 하우스가 있는 섬",
+    beach: "해운대해수욕장",
+  },
+  {
+    name: "청사포 다릿돌전망대",
+    lat: 35.1642021,
+    lon: 129.1961757,
+    description: "바다 위를 걷는 듯한 유리 바닥 전망대",
+    beach: "송정해수욕장 · 해운대해수욕장",
+  },
+  {
+    name: "광안대교",
+    lat: 35.1456901,
+    lon: 129.1283872,
+    description: "광안리 해변에서 만나는 부산 대표 야경",
+    beach: "광안리해수욕장",
+  },
+  {
+    name: "민락수변공원",
+    lat: 35.15426,
+    lon: 129.13179,
+    description: "바다를 바라보며 쉬기 좋은 수변 공원",
+    beach: "광안리해수욕장",
+  },
+  {
+    name: "F1963",
+    lat: 35.1771063,
+    lon: 129.1149266,
+    description: "옛 철강공장을 문화공간으로 바꾼 복합 문화 명소",
+    beach: "광안리해수욕장",
+  },
+  {
+    name: "해동용궁사",
+    lat: 35.1884335,
+    lon: 129.2229764,
+    description: "바닷가 절벽 위에 자리한 사찰",
+    beach: "송정해수욕장",
+  },
+  {
+    name: "미포철길",
+    lat: 35.1581707,
+    lon: 129.1728278,
+    description: "동해남부선 옛 철길을 따라 걷는 산책 명소",
+    beach: "해운대해수욕장 · 송정해수욕장",
+  },
+  {
+    name: "송도해상케이블카",
+    lat: 35.0689247,
+    lon: 129.0220234,
+    description: "송도 바다를 가로지르는 케이블카",
+    beach: "송도해수욕장",
+  },
+  {
+    name: "송도용궁구름다리",
+    lat: 35.0619206,
+    lon: 129.0219475,
+    description: "암남공원과 이어지는 해상 보행교",
+    beach: "송도해수욕장",
+  },
+  {
+    name: "암남공원",
+    lat: 35.0580746,
+    lon: 129.015292,
+    description: "해안 절벽과 숲길을 함께 즐기는 공원",
+    beach: "송도해수욕장",
+  },
+  {
+    name: "다대포 꿈의 낙조분수",
+    lat: 35.0465492,
+    lon: 128.9683979,
+    description: "음악과 빛을 함께 즐기는 분수 광장",
+    beach: "다대포해수욕장",
+  },
+  {
+    name: "다대포 해변공원",
+    lat: 35.0458529,
+    lon: 128.9669187,
+    description: "넓은 모래사장과 낙조가 아름다운 공원",
+    beach: "다대포해수욕장",
+  },
+  {
+    name: "아미산 전망대",
+    lat: 35.0528896,
+    lon: 128.9607581,
+    description: "낙동강 하구와 다대포 바다를 조망하는 전망대",
+    beach: "다대포해수욕장",
+  },
+  {
+    name: "삼성대",
+    lat: 35.2594315,
+    lon: 129.2338004,
+    description: "일광해수욕장 한가운데 자리한 기장의 유서 깊은 명소",
+    beach: "일광해수욕장",
+  },
+  {
+    name: "학리항",
+    lat: 35.258659,
+    lon: 129.2447077,
+    description: "어촌과 해안 풍경을 함께 둘러보기 좋은 작은 항구",
+    beach: "일광해수욕장",
+  },
+  {
+    name: "황학대",
+    lat: 35.2423512,
+    lon: 129.2469307,
+    description: "기장 해안의 풍경과 이야기를 만나는 유서 깊은 명소",
+    beach: "일광해수욕장",
+  },
+  {
+    name: "장안사",
+    lat: 35.3743156,
+    lon: 129.2329808,
+    description: "불광산 자락에 자리한 기장의 대표 사찰",
+    beach: "임랑해수욕장",
+  },
+  {
+    name: "묘관음사",
+    lat: 35.3231902,
+    lon: 129.2660306,
+    description: "임랑 인근에서 조용히 둘러보기 좋은 사찰",
+    beach: "임랑해수욕장",
+  },
+  {
+    name: "월내항",
+    lat: 35.3256921,
+    lon: 129.2784701,
+    description: "어촌 풍경과 동해 바다를 가까이 만나는 항구",
+    beach: "임랑해수욕장",
+  },
+];
 let current = beaches[0],
   purpose = "산책",
   map,
+  beachMarkerLayer,
+  attractionMarkerLayer,
+  mapLayerControl,
+  mapLegendControl,
   loaded = false,
   carouselTimer = null,
   carouselIndex = 0;
@@ -500,21 +647,67 @@ function renderMap() {
       maxZoom: 19,
       attribution: "© OpenStreetMap contributors",
     }).addTo(map);
+    beachMarkerLayer = L.layerGroup().addTo(map);
+    attractionMarkerLayer = L.layerGroup().addTo(map);
+    mapLayerControl = L.control
+      .layers(
+        null,
+        {
+          "해수욕장": beachMarkerLayer,
+          "관광명소": attractionMarkerLayer,
+        },
+        {
+          collapsed: window.innerWidth < 430,
+          position: "topright",
+        },
+      )
+      .addTo(map);
+    mapLegendControl = L.control({ position: "bottomleft" });
+    mapLegendControl.onAdd = () => {
+      const legend = L.DomUtil.create("div", "map-legend");
+      legend.setAttribute("aria-label", "지도 마커 범례");
+      legend.innerHTML = `<b>지도 범례</b><span><i class="legend-pin beach-pin"></i>해수욕장</span><span><i class="legend-pin attraction-pin">★</i>관광명소</span>`;
+      L.DomEvent.disableClickPropagation(legend);
+      return legend;
+    };
+    mapLegendControl.addTo(map);
   }
-  map.eachLayer((l) => {
-    if (l instanceof L.Marker) map.removeLayer(l);
-  });
+  beachMarkerLayer.clearLayers();
+  attractionMarkerLayer.clearLayers();
   beaches.forEach((b) => {
     let w = b.weather ? weatherText(b.weather.code) : ["⌁", "불러올 수 없음"],
       wave = b.marine?.wave;
     L.marker([b.lat, b.lon])
-      .addTo(map)
+      .addTo(beachMarkerLayer)
       .bindPopup(
         `<div class="popup"><h3>${b.name}</h3><p><span class="emoji-icon weather-emoji" aria-hidden="true">${w[0]}</span> ${w[1]} · ${b.weather?.temp ?? "정보 없음"}°C</p><p>풍속 ${b.weather?.wind ?? "정보 없음"} km/h · 파도 ${wave ?? "불러올 수 없음"}${wave !== null && wave !== undefined ? "m" : ""}</p><p>맞춤 점수 <b>${score(b)}점</b></p><button onclick="window.openDetail('${b.id}')">상세 보기</button></div>`,
       );
   });
-  map.fitBounds(L.latLngBounds(beaches.map((b) => [b.lat, b.lon])), {
-    padding: [28, 28],
+  const attractionIcon = L.divIcon({
+    className: "attraction-marker-shell",
+    html: '<span class="attraction-marker-icon" aria-hidden="true"><i>★</i></span>',
+    iconSize: [34, 38],
+    iconAnchor: [17, 36],
+    popupAnchor: [0, -32],
+  });
+  mapAttractions.forEach((place) => {
+    L.marker([place.lat, place.lon], {
+      icon: attractionIcon,
+      title: place.name,
+      alt: `${place.name} 관광명소`,
+    })
+      .addTo(attractionMarkerLayer)
+      .bindPopup(
+        `<div class="popup attraction-popup"><p class="popup-type">관광명소</p><h3>${place.name}</h3><p>${place.description}</p><p class="nearby-beach"><b>가까운 해수욕장</b><br>${place.beach}</p></div>`,
+      );
+  });
+  const allMarkerPoints = [
+    ...beaches.map((b) => [b.lat, b.lon]),
+    ...mapAttractions.map((place) => [place.lat, place.lon]),
+  ];
+  map.fitBounds(L.latLngBounds(allMarkerPoints), {
+    padding: [34, 34],
+    maxZoom: 11,
   });
   setTimeout(() => map.invalidateSize(), 50);
 }
