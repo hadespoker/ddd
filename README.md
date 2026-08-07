@@ -1,4 +1,4 @@
-# 바다픽 (BadaPick)
+# 나만바
 
 부산 7개 해변을 위한 맞춤 추천 웹앱입니다. GitHub Pages에서 그대로 배포할 수 있는 순수 HTML/CSS/JavaScript 프로젝트입니다.
 
