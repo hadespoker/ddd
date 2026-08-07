@@ -786,7 +786,7 @@ function loadNearbyPlaces() {
       {
         name: "미포철길",
         description: "동해남부선 옛 철길을 따라 걷는 산책 명소",
-        image: "",
+        image: "assets/attractions/mipo-railroad.jpg",
       },
     ],
     songdo: [
@@ -833,17 +833,17 @@ function loadNearbyPlaces() {
       {
         name: "삼성대",
         description: "일광해수욕장 한가운데 자리한 기장 지역의 유서 깊은 명소",
-        image: "",
+        image: "assets/attractions/samseongdae.jpg",
       },
       {
         name: "학리항",
         description: "어촌과 해안 풍경을 함께 둘러보기 좋은 작은 항구",
-        image: "",
+        image: "assets/attractions/hakri-port.png",
       },
       {
         name: "황학대",
         description: "일광 해안의 풍경과 이야기를 만나는 기장 명소",
-        image: "",
+        image: "assets/attractions/hwanghakdae.jpg",
       },
     ],
     imrang: [
@@ -856,12 +856,12 @@ function loadNearbyPlaces() {
       {
         name: "묘관음사",
         description: "임랑 인근에서 조용히 둘러보기 좋은 사찰",
-        image: "",
+        image: "assets/attractions/myogwaneumsa.jpg",
       },
       {
         name: "월내항",
         description: "어촌 풍경과 동해 바다를 가까이 만나는 항구",
-        image: "",
+        image: "assets/attractions/wolnae-port.jpg",
       },
     ],
   };
